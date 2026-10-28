@@ -12,6 +12,8 @@
   display: contents;
 }
 
+
+
 .board-label {
   display: flex;
   align-items: center;
@@ -25,7 +27,7 @@
 }
 
 .board-cell {
-  background-color: #b3d9ff;
+  background-color: #2d6aa6;
   border: 1px solid #3674a8;
   aspect-ratio: 1;
 }
@@ -33,4 +35,197 @@
 .board-cell:hover {
   background-color: #78b8ed;
   cursor: pointer;
+}
+
+
+.board-cell.selected {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: default;
+}
+
+.board-cell.selected.hit {
+  background-color: #e76f51;
+  animation: explosion 0.5s ease-out;
+}
+
+.board-cell.selected.miss {
+  background-color: #78b8ed;
+  animation: splash 0.4s ease-out;
+}
+
+.board-cell:disabled {
+  opacity: 1;
+}
+
+.game-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 20px auto;
+}
+
+.game-status {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.game-status h2 {
+  font-size: 24px;
+  color: #3674a8;
+}
+
+.ship-announcement {
+  text-align: center;
+  background-color: #dbeafe;
+  color: #1e40af;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  animation: shipSink 1.5s ease-in-out;
+}
+
+.victory-message {
+  text-align: center;
+  background-color: #dcfce7;
+  color: #166534;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.victory-message h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  animation: victoryPop 0.8s ease-out;
+}
+
+.new-game-button {
+  background-color: #3674a8;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 15px 0;
+}
+
+.new-game-button:hover {
+  background-color: #245780;
+}
+
+@keyframes explosion {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+@keyframes splash {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .board-cell.selected.hit,
+  .board-cell.selected.miss {
+    animation: none;
+  }
+}
+
+@keyframes shipSink {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  30% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  70% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+}
+
+@keyframes victoryPop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes sinkingShip {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(5px) rotate(15deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(25px) rotate(35deg);
+    opacity: 0;
+  }
+}
+
+.sinking-ship {
+  display: inline-block;
+  font-size: 48px;
+  animation: sinkingShip 1.5s ease-in forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .board-cell.selected.hit,
+  .board-cell.selected.miss,
+  .ship-announcement,
+  .sinking-ship,
+  .victory-message {
+    animation: none;
+  }
 }
