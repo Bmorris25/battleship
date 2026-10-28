@@ -85,7 +85,7 @@ const gameWon =
       <div className="board-label"></div>
 
       {columnWords.map((word) => (
-        <div className="board-label" key={word}>
+        <div className="board-label time-label" key={word}>
           {word}
         </div>
       ))}

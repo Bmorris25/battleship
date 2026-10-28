@@ -25,34 +25,50 @@ function App() {
 
 
 
-  return (
-    <div>
-      <h1>ASL Battleship</h1>
-       <button
+  
+return (
+  <div className="app-container">
+    <header className="game-header">
+      <div className="header-top">
+        <h1>🚢 ASL Battleship</h1>
+      </div>
+
+      <div className="header-controls">
+        <div className="vocabulary-controls">
+          <span>Vocabulary:</span>
+
+          <button
+            className={category === "sports" ? "active" : ""}
+            onClick={() => setCategory("sports")}
+          >
+            Sports
+          </button>
+
+          <button
+            className={category === "food" ? "active" : ""}
+            onClick={() => setCategory("food")}
+          >
+            Food
+          </button>
+        </div>
+
+        <button
           className="new-game-button"
-          onClick={startNewGame}>
-          🚢 New Game
+          onClick={startNewGame}
+        >
+          ↻ New Game
         </button>
-      <h2>Choose Your Vocabulary</h2>
+      </div>
+    </header>
 
-      <button onClick={() => setCategory("sports")}>
-        Sports
-      </button>
+    <Board
+      key={gameNumber}
+      category={category}
+      ships={ships}
+    />
+  </div>
+);
 
-      <button onClick={() => setCategory("food")}>
-        Food
-      </button>
-
-      
-            
-
-      <Board
-        key={gameNumber}
-        category={category}
-        ships={ships}
-      />
-    </div>
-  );
 }
 
 export default App;
